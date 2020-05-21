@@ -17,9 +17,11 @@ public class Cube : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"));
         {
+            // дотуп к компоненту MeshRenderer обЪекта с тегом "Player"
             MeshRenderer ballRenderer = collision.gameObject.GetComponent<MeshRenderer>();
+            // дщступ к Material обЪекта с тегом "Player"
             Material ballMaterial = ballRenderer.material;
-            // при коллизии передаёт материал шара. Того объекта, который сталкивается с кубом
+            // при коллизии , берет   материал обЪекта с тегом "Player". 
             _meshRenderer.material = ballMaterial;
         }
     }
