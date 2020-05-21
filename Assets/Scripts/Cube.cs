@@ -9,6 +9,7 @@ public class Cube : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // доступ к компоненту MeshRenderer
         _meshRenderer = GetComponent<MeshRenderer>();
     }
 
@@ -18,6 +19,7 @@ public class Cube : MonoBehaviour
         {
             MeshRenderer ballRenderer = collision.gameObject.GetComponent<MeshRenderer>();
             Material ballMaterial = ballRenderer.material;
+            // при коллизии передаёт материал шара. Того объекта, который сталкивается с кубом
             _meshRenderer.material = ballMaterial;
         }
     }
