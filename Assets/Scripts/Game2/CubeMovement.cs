@@ -50,11 +50,12 @@ public class CubeMovement : MonoBehaviour
     {
         // Debug.DrawRay(newPosition,Vector3.down,Color.green, 2f); показать луч
         if (Physics.Raycast(newPosition, Vector3.down))
-        
-        //transform.DOMove(newPosition, moveTime) .SetEase(Ease.OutElastic); движение без прыжков
-        allowInput = false;
-        transform.DOJump(newPosition, jumpPower, 1, moveTime).OnComplete(ResetInput);
-        
+        {
+            //transform.DOMove(newPosition, moveTime) .SetEase(Ease.OutElastic); движение без прыжков
+            allowInput = false;
+            transform.DOJump(newPosition, jumpPower, 1, moveTime).OnComplete(ResetInput);
+        }
+
         // Invoke(nameof(ResetInput), moveTime);
            
     }
