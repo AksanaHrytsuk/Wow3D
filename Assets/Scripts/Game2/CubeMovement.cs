@@ -5,26 +5,37 @@ using DG.Tweening;
 
 public class CubeMovement : MonoBehaviour
 {
-    [SerializeField] private float moveTime = 0.5f;
+    [SerializeField] float moveTime = 0.5f;
+    [SerializeField] float jumpPower = 1f;
+    [SerializeField] private float reloadLevelDelay = 1;
 
-    [SerializeField] private float jumpPower = 0.5f;
+    bool allowInput;
 
-    private bool allowInput;
+    public void Die()
+    {
+        Destroy(gameObject);
+        ScenesLoader.Instance.RestartLevel(reloadLevelDelay);
+    }
+    
+
     // Start is called before the first frame update
     void Start()
     {
         allowInput = true;
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (!allowInput)
         {
+            //exit
             return;
         }
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            // Vector3 newPosition = transform.position + new Vector3(0, 0, 1); движение по Z(синяя стрелка)
+            //new Vector3(0, 0, 1) = Vector3.forward
             Vector3 newPosition = transform.position + Vector3.forward;
             MoveTo(newPosition);
         }
@@ -32,15 +43,14 @@ public class CubeMovement : MonoBehaviour
         {
             Vector3 newPosition = transform.position + Vector3.back;
             MoveTo(newPosition);
-        } 
+        }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Vector3 newPosition = transform.position + Vector3.left;
             MoveTo(newPosition);
-        } 
+        }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            
             Vector3 newPosition = transform.position + Vector3.right;
             MoveTo(newPosition);
         }
@@ -48,16 +58,12 @@ public class CubeMovement : MonoBehaviour
 
     void MoveTo(Vector3 newPosition)
     {
-        // Debug.DrawRay(newPosition,Vector3.down,Color.green, 2f); показать луч
-        if (Physics.Raycast(newPosition, Vector3.down))
+        //Debug.DrawRay(newPosition, Vector3.down, Color.green, 2f);
+        if (Physics.Raycast(newPosition, Vector3.down, 1f))
         {
-            //transform.DOMove(newPosition, moveTime) .SetEase(Ease.OutElastic); движение без прыжков
             allowInput = false;
             transform.DOJump(newPosition, jumpPower, 1, moveTime).OnComplete(ResetInput);
         }
-
-        // Invoke(nameof(ResetInput), moveTime);
-           
     }
 
     void ResetInput()

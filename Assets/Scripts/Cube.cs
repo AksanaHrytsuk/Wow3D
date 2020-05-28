@@ -1,28 +1,28 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    private MeshRenderer _meshRenderer;
+
+    MeshRenderer rend;
+
     // Start is called before the first frame update
     void Start()
     {
-        // доступ к компоненту MeshRenderer
-        _meshRenderer = GetComponent<MeshRenderer>();
+        rend = GetComponent<MeshRenderer>();
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"));
+        if (collision.gameObject.CompareTag("Player"))
         {
-            // дотуп к компоненту MeshRenderer обЪекта с тегом "Player"
             MeshRenderer ballRenderer = collision.gameObject.GetComponent<MeshRenderer>();
-            // дщступ к Material обЪекта с тегом "Player"
             Material ballMaterial = ballRenderer.material;
-            // при коллизии , берет   материал обЪекта с тегом "Player". 
-            _meshRenderer.material = ballMaterial;
+            rend.material.color = ballMaterial.color;
+
+            BallMovement ball = collision.gameObject.GetComponent<BallMovement>();
         }
     }
 
@@ -30,7 +30,7 @@ public class Cube : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            _meshRenderer.material.color = Color.green;
+            rend.material.color = Color.blue;
         }
     }
 
@@ -38,7 +38,7 @@ public class Cube : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            _meshRenderer.material.color = Color.yellow;
+            rend.material.color = Color.yellow;
         }
     }
 }
