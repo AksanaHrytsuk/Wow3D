@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
@@ -21,14 +19,11 @@ public class BallMovement : MonoBehaviour
         }
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Jump"))
@@ -41,6 +36,6 @@ public class BallMovement : MonoBehaviour
         float inputX = Input.GetAxis("Horizontal");
         float inputZ = Input.GetAxis("Vertical");
 
-        rb.AddForce(new Vector3(inputX, 0, inputZ) * speed);
+        rb.AddForce(new Vector3(inputX, 0, inputZ) * Speed);
     }
 }
