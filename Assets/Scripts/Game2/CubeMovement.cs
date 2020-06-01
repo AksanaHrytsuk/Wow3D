@@ -8,11 +8,18 @@ public class CubeMovement : MonoBehaviour
     [SerializeField] float moveTime = 0.5f;
     [SerializeField] float jumpPower = 1f;
     [SerializeField] private float reloadLevelDelay = 1;
+    [SerializeField] private GameObject effect;
 
     bool allowInput;
 
     public void Die()
     {
+        if (effect != null)
+        {
+            Vector3 fxPosition = transform.position;
+            GameObject newObject = Instantiate(original: effect, fxPosition, Quaternion.identity);
+            Destroy(newObject, 2f);
+        }
         Destroy(gameObject);
         ScenesLoader.Instance.RestartLevel(reloadLevelDelay);
     }

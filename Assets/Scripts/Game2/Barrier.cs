@@ -40,13 +40,12 @@ public class Barrier : MonoBehaviour
         // instans = this;
     }
 
-    public void OnCollisionEnter(Collision other)
+    public void OnTriggerEnter(Collider other)
     {
-        if (other.collider.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             _cube = FindObjectOfType<CubeMovement>();
-            Destroy(_cube);
-            ScenesLoader.Instance.RestartLevel(reloadLevelDelay);
+            _cube.Die();
         }
     }
 

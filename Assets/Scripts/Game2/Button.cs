@@ -10,8 +10,18 @@ public class Button : MonoBehaviour
   [SerializeField] private float delay;
 
   private Barrier _barrier;
+  private bool buttonPressed = false;
   private Collider _collider;
 
+  void PressButton()
+  {
+    buttonPressed = true;
+  }
+
+  void UnpressButtom()
+  {
+    buttonPressed = false;
+  }
   private void Awake()
   {
     _collider = GetComponent<Collider>();
@@ -24,8 +34,9 @@ public class Button : MonoBehaviour
 
   public void OnTriggerEnter(Collider other)
   {
-    if (other.CompareTag("Player"))
+    if (other.CompareTag("Player") && !buttonPressed)
     {
+      PressButton();
       MoveDown();
       _barrier.MoveUp();
     }
@@ -33,7 +44,7 @@ public class Button : MonoBehaviour
 
   public void OnTriggerExit(Collider other)
   {
-    if (other.CompareTag("Player"))
+    if (other.CompareTag("Player") && buttonPressed)
     {
       //transform.DOMoveY(movementUp , moveTime).SetEase(Ease.InCubic);
       StartCoroutine(WaitMoveDown());
@@ -50,6 +61,7 @@ public class Button : MonoBehaviour
   {
     yield return new WaitForSeconds(delay);
     //_barrierMovement.MoveDown();
-    transform.DOMoveY(movementUp , moveTime).SetEase(Ease.InCubic);
+    transform.DOMoveY(movementUp , moveTime).SetEase(Ease.InCubic).OnComplete(UnpressButtom);
+    
   }
 }
