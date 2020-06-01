@@ -8,16 +8,16 @@ public class CubeMovement : MonoBehaviour
     [SerializeField] float moveTime = 0.5f;
     [SerializeField] float jumpPower = 1f;
     [SerializeField] private float reloadLevelDelay = 1;
-    [SerializeField] private GameObject effect;
+    [SerializeField] private GameObject deathEffect;
 
     bool allowInput;
 
     public void Die()
     {
-        if (effect != null)
+        if (deathEffect != null)
         {
             Vector3 fxPosition = transform.position;
-            GameObject newObject = Instantiate(original: effect, fxPosition, Quaternion.identity);
+            GameObject newObject = Instantiate(original: deathEffect, fxPosition, Quaternion.identity);
             Destroy(newObject, 2f);
         }
         Destroy(gameObject);
