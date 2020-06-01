@@ -5,7 +5,16 @@ public class ScenesLoader : MonoBehaviour
 {
     #region Singleton
 
-    public static ScenesLoader Instance { get; private set; }
+    private static ScenesLoader instance;
+
+    public static ScenesLoader Instance
+    {
+        get
+        {
+            // возврат значения переменной instance
+            return instance;
+        }
+    }
 
     public void Awake()
     {
@@ -15,7 +24,7 @@ public class ScenesLoader : MonoBehaviour
         }
         else
         {
-            Instance = this;
+            instance = this;
         }
         
     }
@@ -23,7 +32,15 @@ public class ScenesLoader : MonoBehaviour
 
     public  void RestartLevel(float delay)
     {
-        StartCoroutine(ReloadLevelWithDelay(delay));
+        StartCoroutine(RestartLevelCoroutine(delay));
+    }
+    
+    IEnumerator RestartLevelCoroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        
+        int curentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(curentScene);
     }
     
     // public void RestartLevel()
@@ -33,13 +50,4 @@ public class ScenesLoader : MonoBehaviour
     //     // перезагрузка текущей сцены
     //     SceneManager.LoadScene(ccurentScene);
     // }
-    IEnumerator ReloadLevelWithDelay(float delay)
-    {
-        
-        yield return new WaitForSeconds(delay);
-        
-        int ccurentScene = SceneManager.GetActiveScene().buildIndex;
-       
-        SceneManager.LoadScene(ccurentScene);
-    }
 }

@@ -17,8 +17,6 @@ public class CubeMovement : MonoBehaviour
         ScenesLoader.Instance.RestartLevel(reloadLevelDelay);
     }
     
-
-    // Start is called before the first frame update
     void Start()
     {
         allowInput = true;
@@ -56,12 +54,17 @@ public class CubeMovement : MonoBehaviour
         }
     }
 
+    //Движение MoveTo в новую позицию newPosition
     void MoveTo(Vector3 newPosition)
     {
         //Debug.DrawRay(newPosition, Vector3.down, Color.green, 2f);
+        // Raycast проверяет, есть ли какой-то объект в newPosition в направлении Vector3.dowБ если да, то выполняем движ.
         if (Physics.Raycast(newPosition, Vector3.down, 1f))
         {
+            // запретить ещё одно движение во время начатого движения
             allowInput = false;
+            // движение через transform и функцию , которая обеспечивает прыжок. ПЕрем. на newPositionб с силой jumpPower
+            // один прыжок, за moveTime времени, OnComplete - для повторения движения с каждым нажатием кнопки
             transform.DOJump(newPosition, jumpPower, 1, moveTime).OnComplete(ResetInput);
         }
     }
