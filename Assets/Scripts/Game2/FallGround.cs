@@ -36,7 +36,7 @@ public class FallGround : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        cube = GetComponent<CubeMovement>();
+        cube = FindObjectOfType<CubeMovement>();
     }
 
     private void SwitchOnGroundGravity()
