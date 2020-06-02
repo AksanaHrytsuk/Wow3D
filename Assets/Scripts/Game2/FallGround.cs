@@ -14,6 +14,7 @@ public class FallGround : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private CubeMovement cube;
+    public float delay;
     
     public void OnCollisionEnter(Collision other1)
     {
@@ -34,6 +35,7 @@ public class FallGround : MonoBehaviour
             .AppendCallback(cube.SwitchOnCubeGravity)
             .AppendCallback(cube.SwitchOffKinematic);
     }
+    
 
     private void Awake()
     {

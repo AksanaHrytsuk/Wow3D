@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -11,8 +12,15 @@ public class CubeMovement : MonoBehaviour
     [SerializeField] private GameObject deathEffect;
     
     
-
     bool allowInput;
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Die"))
+        {
+            Die();
+        }
+    }
 
     public void SwitchOnCubeGravity()
     {
