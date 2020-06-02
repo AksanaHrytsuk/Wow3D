@@ -9,8 +9,6 @@ public class FallGround : MonoBehaviour
     [SerializeField] private float waitTimeDown = 2f;
 
     public bool fallGround;
-
-    public FallGround dropGround;
     
     private Sequence _sequence;
 
@@ -37,8 +35,8 @@ public class FallGround : MonoBehaviour
 
     private void Awake()
     {
-        _rigidbody = FindObjectOfType<Rigidbody>();
-        cube = FindObjectOfType<CubeMovement>();
+        _rigidbody = GetComponent<Rigidbody>();
+        cube = GetComponent<CubeMovement>();
     }
 
     private void SwitchOnGroundGravity()

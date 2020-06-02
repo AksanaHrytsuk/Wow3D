@@ -16,12 +16,12 @@ public class CubeMovement : MonoBehaviour
 
     public void SwitchOnCubeGravity()
     {
-        Rigidbody rigidbody = FindObjectOfType<Rigidbody>();
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
         rigidbody.useGravity = true;
     } 
     public void SwitchOffKinematic()
     {
-        Rigidbody rigidbody = FindObjectOfType<Rigidbody>();
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
         rigidbody.isKinematic = false;
     }
 
