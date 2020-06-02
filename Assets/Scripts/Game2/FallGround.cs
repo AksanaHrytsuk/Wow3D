@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using DG.Tweening;
 public class FallGround : MonoBehaviour
 {
-    [SerializeField] private float waitTimeDown = 5f;
+    [SerializeField] private float waitTimeDown = 2f;
 
     public bool fallGround;
 
@@ -16,22 +17,22 @@ public class FallGround : MonoBehaviour
     private Rigidbody _rigidbody;
     private CubeMovement cube;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        // _sequence = DOTween.Sequence();
-        // _sequence.AppendInterval(waitTimeDown)
-        //     .Append(transform.DOShakePosition(0.3f, 0.3f, 360));
-    }
-
     public void OnCollisionEnter(Collision other1)
     {
         if (other1.collider.CompareTag("Player") && fallGround)
         {
-            Debug.Log("here");
-            SwitchOnGroundGravity();
             cube.SwitchOnCubeGravity();
+            cube.SwitchOffKinematic();
+            MoveDownGround();
         }
+    }
+
+    private void MoveDownGround()
+    {
+        _sequence = DOTween.Sequence();
+        _sequence.AppendInterval(waitTimeDown)
+            .Append(transform.DOShakePosition(0.1f, 0.1f, 360))
+            .AppendCallback(SwitchOnGroundGravity);
     }
 
     private void Awake()
