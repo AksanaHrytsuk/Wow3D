@@ -30,7 +30,8 @@ public class FallGround : MonoBehaviour
         _sequence = DOTween.Sequence();
         _sequence.AppendInterval(waitTimeDown)
             .Append(transform.DOShakePosition(0.1f, 0.1f, 360))
-            .AppendCallback(SwitchOnGroundGravity);
+            .AppendInterval(waitTimeDown)
+            .OnComplete(SwitchOnGroundGravity);
     }
 
     private void Awake()
