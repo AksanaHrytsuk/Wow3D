@@ -9,9 +9,9 @@ public class Button : MonoBehaviour
   [SerializeField] private float moveTime;
   [SerializeField] private float delay;
 
-  private Barrier _barrier;
-  private bool buttonPressed = false;
-  private Collider _collider;
+  public Barrier _barrier;
+  
+  private bool buttonPressed;
 
   void PressButton()
   {
@@ -22,22 +22,13 @@ public class Button : MonoBehaviour
   {
     buttonPressed = false;
   }
-  private void Awake()
-  {
-    _collider = GetComponent<Collider>();
-  }
-
-  private void Start()
-  {
-    _barrier = FindObjectOfType<Barrier>();
-  }
-
+ 
   public void OnTriggerEnter(Collider other)
   {
     if (other.CompareTag("Player") && !buttonPressed)
     {
       PressButton();
-      MoveDown();
+      MoveDownButton();
       _barrier.MoveUp();
     }
   }
@@ -46,21 +37,19 @@ public class Button : MonoBehaviour
   {
     if (other.CompareTag("Player") && buttonPressed)
     {
-      //transform.DOMoveY(movementUp , moveTime).SetEase(Ease.InCubic);
-      StartCoroutine(WaitMoveDown());
+      StartCoroutine(WaitMoveUpButton());
       _barrier.MoveDown();
     }
   }
 
-  void MoveDown()
+  void MoveDownButton()
   {
     transform.DOMoveY(movementDown , moveTime).SetEase(Ease.InCubic);
   }
 
-  IEnumerator WaitMoveDown()
+  IEnumerator WaitMoveUpButton()
   {
     yield return new WaitForSeconds(delay);
-    //_barrierMovement.MoveDown();
     transform.DOMoveY(movementUp , moveTime).SetEase(Ease.InCubic).OnComplete(UnpressButtom);
     
   }

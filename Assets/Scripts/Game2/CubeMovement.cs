@@ -9,8 +9,16 @@ public class CubeMovement : MonoBehaviour
     [SerializeField] float jumpPower = 1f;
     [SerializeField] private float reloadLevelDelay = 1;
     [SerializeField] private GameObject deathEffect;
+    
+    
 
     bool allowInput;
+
+    public void SwitchOnCubeGravity()
+    {
+        Rigidbody rigidbody = FindObjectOfType<Rigidbody>();
+        rigidbody.useGravity = true;
+    }
 
     public void Die()
     {

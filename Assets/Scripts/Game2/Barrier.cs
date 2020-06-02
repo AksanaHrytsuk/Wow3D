@@ -9,40 +9,20 @@ public class Barrier : MonoBehaviour
     [SerializeField] private float moveTime;
     [SerializeField] private float waitTimeUp;
     [SerializeField] private float waitTimeDown;
-    [SerializeField] private float reloadLevelDelay = 1;
 
     private Sequence movementSequence;
 
     private Collider _collider;
     private CubeMovement _cube;
    
-        
-    
-    // private static BarrierMovement instans;
-    //
-    // public static BarrierMovement Instans
-    // {
-    //     get
-    //     {
-    //         return instans;
-    //     }
-    // }
-
-    // Start is called before the first frame update
-
     private void Awake()
     {
         _collider = GetComponent<Collider>();
     }
 
-    void Start()
+    public void OnCollisionEnter(Collision other)
     {
-        // instans = this;
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        if (other.collider.CompareTag("Player"))
         {
             _cube = FindObjectOfType<CubeMovement>();
             _cube.Die();
@@ -53,6 +33,7 @@ public class Barrier : MonoBehaviour
     {
             movementSequence = DOTween.Sequence();
             movementSequence.Append(transform.DOMoveY(movementUp, moveTime)).SetEase(Ease.InExpo);
+            SwitchOffCollider();
     }
 
     public void MoveDown()
