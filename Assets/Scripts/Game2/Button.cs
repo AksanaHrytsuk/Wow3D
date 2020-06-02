@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 
@@ -12,6 +13,15 @@ public class Button : MonoBehaviour
   public Barrier _barrier;
   
   private bool buttonPressed;
+
+  private void Start()
+  {
+    if (_barrier == null)
+
+    {
+      Debug.LogError("Block is not set");
+    }
+  }
 
   void PressButton()
   {
