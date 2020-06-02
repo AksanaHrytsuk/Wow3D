@@ -19,9 +19,9 @@ public class FallGround : MonoBehaviour
     {
         if (other1.collider.CompareTag("Player") && fallGround)
         {
-            cube.SwitchOnCubeGravity();
-            cube.SwitchOffKinematic();
             MoveDownGround();
+            //cube.SwitchOnCubeGravity();
+            //cube.SwitchOffKinematic();
         }
     }
 
@@ -29,9 +29,10 @@ public class FallGround : MonoBehaviour
     {
         _sequence = DOTween.Sequence();
         _sequence.AppendInterval(waitTimeDown)
-            .Append(transform.DOShakePosition(0.1f, 0.1f, 360))
-            .AppendInterval(waitTimeDown)
-            .OnComplete(SwitchOnGroundGravity);
+            .Append(transform.DOShakePosition(0.3f, 0.5f, 360))
+            .AppendCallback(SwitchOnGroundGravity)
+            .AppendCallback(cube.SwitchOnCubeGravity)
+            .AppendCallback(cube.SwitchOffKinematic);
     }
 
     private void Awake()
