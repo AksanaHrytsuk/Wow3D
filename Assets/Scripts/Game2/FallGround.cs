@@ -17,7 +17,6 @@ public class FallGround : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private CubeMovement cube;
-    public float delay;
     
     public void OnCollisionEnter(Collision other1)
     {
@@ -32,21 +31,14 @@ public class FallGround : MonoBehaviour
         _sequence = DOTween.Sequence();
         _sequence.AppendCallback(isKinematice)
             .AppendInterval(waitTimeDown)
-            .Append(transform.DOShakePosition(0.3f, 0.5f, 360))
+            .Append(transform.DOShakePosition(0.1f, 0.1f, 360))
             .Append(transform.DOMoveY(movementDown, 0.5f))
             //.AppendCallback(SwitchOnGroundGravity)
             .AppendCallback(cube.SwitchOnCubeGravity)
             .AppendInterval(waitTimeDown)
-            .AppendCallback(cube.Die2)
             .Append(transform.DOMoveY(movementUp, 0.5f))
-            .AppendInterval(waitTimeDown)
-            .AppendCallback(ScenesLoader.Instance.RestartLevel);
-
-
+            .AppendInterval(waitTimeDown);
     }
-
-    
-
 
     private void Awake()
     {
@@ -58,11 +50,10 @@ public class FallGround : MonoBehaviour
     {
             _rigidbody.isKinematic = true;
             _rigidbody.detectCollisions = true;
-        
     }
 
-    private void SwitchOnGroundGravity()
-    {
-        _rigidbody.useGravity = true;
-    }
+    // private void SwitchOnGroundGravity()
+    // {
+    //     _rigidbody.useGravity = true;
+    // }
 }

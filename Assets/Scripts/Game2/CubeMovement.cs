@@ -15,14 +15,14 @@ public class CubeMovement : MonoBehaviour
     
     bool allowInput;
 
-    // public void OnTriggerEnter(Collider other)
-    // {
-    //     
-    //     if (other.CompareTag("Die"))
-    //     {
-    //         Die();
-    //     }
-    // }
+    public void OnTriggerEnter(Collider other)
+    {
+        
+        if (other.CompareTag("Die"))
+        {
+            Die();
+        }
+    }
 
     public void SwitchOnCubeGravity()
     {
@@ -43,29 +43,11 @@ public class CubeMovement : MonoBehaviour
         ScenesLoader.Instance.RestartLevel(reloadLevelDelay);
     }
     
-    public void Die2()
-    {
-        if (deathEffect != null)
-        {
-            Vector3 fxPosition = transform.position;
-            GameObject newObject = Instantiate(original: deathEffect, fxPosition, Quaternion.identity);
-            Destroy(newObject, 2f);
-        }
-        Destroy(gameObject);
-    }
-
-
-    private void Awake()
-    {
-        Rigidbody rigidbody = GetComponent<Rigidbody>();
-    }
-
-    void Start()
+     void Start()
     {
         allowInput = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!allowInput)
