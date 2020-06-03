@@ -43,11 +43,11 @@ public class ScenesLoader : MonoBehaviour
         SceneManager.LoadScene(curentScene);
     }
     
-    // public void RestartLevel()
-    // {
-    //     // получить индекс текущей сцены
-    //     int ccurentScene = SceneManager.GetActiveScene().buildIndex;
-    //     // перезагрузка текущей сцены
-    //     SceneManager.LoadScene(ccurentScene);
-    // }
+    public void RestartLevel()
+    {
+        // получить индекс текущей сцены
+        int ccurentScene = SceneManager.GetActiveScene().buildIndex;
+        // перезагрузка текущей сцены
+        SceneManager.LoadScene(ccurentScene);
+    }
 }

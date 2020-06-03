@@ -1,36 +1,34 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
 public class CubeMovement : MonoBehaviour
 {
-    [SerializeField] float moveTime = 0.5f;
-    [SerializeField] float jumpPower = 1f;
+    [Header("Config parametrs")]
+    [SerializeField] float moveTime;
+    [SerializeField] float jumpPower;
+    
     [SerializeField] private float reloadLevelDelay = 1;
     [SerializeField] private GameObject deathEffect;
     
+    private Rigidbody rigidbody;
     
     bool allowInput;
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Die"))
-        {
-            Die();
-        }
-    }
+    // public void OnTriggerEnter(Collider other)
+    // {
+    //     
+    //     if (other.CompareTag("Die"))
+    //     {
+    //         Die();
+    //     }
+    // }
 
     public void SwitchOnCubeGravity()
     {
         Rigidbody rigidbody = GetComponent<Rigidbody>();
-        rigidbody.useGravity = true;
-    } 
-    public void SwitchOffKinematic()
-    {
-        Rigidbody rigidbody = GetComponent<Rigidbody>();
         rigidbody.isKinematic = false;
+        rigidbody.useGravity = true;
     }
 
     public void Die()
@@ -45,6 +43,23 @@ public class CubeMovement : MonoBehaviour
         ScenesLoader.Instance.RestartLevel(reloadLevelDelay);
     }
     
+    public void Die2()
+    {
+        if (deathEffect != null)
+        {
+            Vector3 fxPosition = transform.position;
+            GameObject newObject = Instantiate(original: deathEffect, fxPosition, Quaternion.identity);
+            Destroy(newObject, 2f);
+        }
+        Destroy(gameObject);
+    }
+
+
+    private void Awake()
+    {
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
+    }
+
     void Start()
     {
         allowInput = true;

@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Security.AccessControl;
 using UnityEngine;
 using DG.Tweening;
 public class FallGround : MonoBehaviour
 {
-    [SerializeField] private float waitTimeDown = 2f;
+    [SerializeField] private float waitTimeDown ;
+    [SerializeField] float movementDown; 
+    [SerializeField] float movementUp; 
 
     public bool fallGround;
     
@@ -21,26 +24,41 @@ public class FallGround : MonoBehaviour
         if (other1.collider.CompareTag("Player") && fallGround)
         {
             MoveDownGround();
-            //cube.SwitchOnCubeGravity();
-            //cube.SwitchOffKinematic();
         }
     }
 
     private void MoveDownGround()
     {
         _sequence = DOTween.Sequence();
-        _sequence.AppendInterval(waitTimeDown)
+        _sequence.AppendCallback(isKinematice)
+            .AppendInterval(waitTimeDown)
             .Append(transform.DOShakePosition(0.3f, 0.5f, 360))
-            .AppendCallback(SwitchOnGroundGravity)
+            .Append(transform.DOMoveY(movementDown, 0.5f))
+            //.AppendCallback(SwitchOnGroundGravity)
             .AppendCallback(cube.SwitchOnCubeGravity)
-            .AppendCallback(cube.SwitchOffKinematic);
+            .AppendInterval(waitTimeDown)
+            .AppendCallback(cube.Die2)
+            .Append(transform.DOMoveY(movementUp, 0.5f))
+            .AppendInterval(waitTimeDown)
+            .AppendCallback(ScenesLoader.Instance.RestartLevel);
+
+
     }
+
     
+
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         cube = FindObjectOfType<CubeMovement>();
+    }
+
+    private void isKinematice()
+    {
+            _rigidbody.isKinematic = true;
+            _rigidbody.detectCollisions = true;
+        
     }
 
     private void SwitchOnGroundGravity()

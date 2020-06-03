@@ -4,12 +4,19 @@ using DG.Tweening;
 
 public class Barrier : MonoBehaviour
 {
+    [Header("Config parametrs")]
     [SerializeField] float movementUp;
     [SerializeField] float movementDown;
     [SerializeField] private float moveTime;
     [SerializeField] private float waitTimeUp;
     [SerializeField] private float waitTimeDown;
 
+    [Header("DoShakePosition parameters")] [SerializeField]
+    private float duration;
+    [SerializeField] private float strength;
+    [SerializeField] private int vibrato;
+    [SerializeField] private float randomness;
+        
     private Sequence movementSequence;
 
     private Collider _collider;
@@ -20,11 +27,15 @@ public class Barrier : MonoBehaviour
         _collider = GetComponent<Collider>();
     }
 
+    private void Start()
+    {
+        _cube = FindObjectOfType<CubeMovement>();
+    }
+
     public void OnCollisionEnter(Collision other)
     {
         if (other.collider.CompareTag("Player"))
         {
-            _cube = FindObjectOfType<CubeMovement>();
             _cube.Die();
         }
     }
@@ -39,12 +50,12 @@ public class Barrier : MonoBehaviour
     public void MoveDown()
     {
         movementSequence = DOTween.Sequence();
-        movementSequence.AppendInterval(waitTimeDown)
-
-            .Append(transform.DOShakePosition(0.3f, 0.3f, 360))
-            .AppendInterval(waitTimeUp)
-            .AppendCallback(SwitchOnCollider)
-            .Append(transform.DOMoveY(movementDown, moveTime));
+        
+        movementSequence.AppendInterval(waitTimeDown);
+        movementSequence.Append(transform.DOShakePosition(duration, strength, vibrato, randomness));
+        movementSequence.AppendInterval(waitTimeUp);
+        movementSequence.AppendCallback(SwitchOnCollider);
+        movementSequence.Append(transform.DOMoveY(movementDown, moveTime));
     }
 
     private void SwitchOnCollider()
