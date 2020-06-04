@@ -10,6 +10,8 @@ public class CubeMovement : MonoBehaviour
     
     [SerializeField] private float reloadLevelDelay = 1;
     [SerializeField] private GameObject deathEffect;
+
+    [Header("Sounds")] [SerializeField] private AudioSource deathSound;
     
     private Rigidbody rigidbody;
     
@@ -39,6 +41,8 @@ public class CubeMovement : MonoBehaviour
             GameObject newObject = Instantiate(original: deathEffect, fxPosition, Quaternion.identity);
             Destroy(newObject, 2f);
         }
+        
+        AudioManager.Instance.PLaySound(deathSound);
         Destroy(gameObject);
         ScenesLoader.Instance.RestartLevel(reloadLevelDelay);
     }
