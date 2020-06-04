@@ -41,8 +41,7 @@ public class CubeMovement : MonoBehaviour
             GameObject newObject = Instantiate(original: deathEffect, fxPosition, Quaternion.identity);
             Destroy(newObject, 2f);
         }
-        
-        AudioManager.Instance.PLaySound(deathSound);
+        //AudioManager.Instance.PLaySound(AudioSource deathEffect);
         Destroy(gameObject);
         ScenesLoader.Instance.RestartLevel(reloadLevelDelay);
     }
