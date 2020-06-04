@@ -79,6 +79,30 @@ public class CubeMovement : MonoBehaviour
         }
     }
 
+    public void MoveForward()
+    {
+        Vector3 newPosition = transform.position + Vector3.forward;
+        MoveTo(newPosition);
+    }
+
+    public void MoveBack()
+    {
+        Vector3 newPosition = transform.position + Vector3.back;
+        MoveTo(newPosition);
+    }
+
+    public void MoveLeft()
+    {
+        Vector3 newPosition = transform.position + Vector3.left;
+        MoveTo(newPosition);
+    }
+
+    public void MoveRight()
+    {
+        Vector3 newPosition = transform.position + Vector3.right;
+        MoveTo(newPosition);
+    }
+
     //Движение MoveTo в новую позицию newPosition
     void MoveTo(Vector3 newPosition)
     {
