@@ -41,13 +41,13 @@ public class CubeMovement : MonoBehaviour
 
     public void Die()
     {
-        createEffect();
+        CreateEffect();
         AudioManager.Instance.PLaySound(deathSound);
         Destroy(gameObject);
         ScenesLoader.Instance.RestartLevel(reloadLevelDelay);
     }
 
-    public void createEffect()
+    public void CreateEffect()
     {
         if (deathEffect != null)
         {

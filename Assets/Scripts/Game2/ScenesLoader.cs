@@ -50,4 +50,10 @@ public class ScenesLoader : MonoBehaviour
         // перезагрузка текущей сцены
         SceneManager.LoadScene(ccurentScene);
     }
+    
+    public void LoadNextScene()
+    {
+        int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(activeSceneIndex + 1, LoadSceneMode.Single);
+    }
 }

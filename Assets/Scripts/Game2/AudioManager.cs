@@ -11,16 +11,16 @@ public class AudioManager : MonoBehaviour
    
    #region Singleton
 
-   public static AudioManager instance { get; private set; }
+   public static AudioManager Instance { get; private set; }
 
-   public static AudioManager Instance
-   {
-      get
-      {
-         // возврат значения переменной instance
-         return instance;
-      }
-   }
+   // public static AudioManager Instance
+   // {
+   //    get
+   //    {
+   //       // возврат значения переменной instance
+   //       return instance;
+   //    }
+   // }
 
    public void Awake()
    {
@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
       }
       else
       {
-         instance = this;
+         Instance = this;
       }
         
    }

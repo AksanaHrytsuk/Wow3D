@@ -17,14 +17,17 @@ public class Coin : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            AudioManager.Instance.PLaySound(magicClip);
-            createEffect();
-            coinsAmount += addCoins;
-            Destroy(gameObject);
+            // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
+            DestroyCoin();
+            
+        //     AudioManager.Instance.PLaySound(magicClip);
+        //     CreateEffect();
+        //     coinsAmount += addCoins;
+        //     Destroy(gameObject);
         }
     }
     
-     void createEffect()
+     void CreateEffect()
     {
         if (boomEffect != null)
         {
@@ -34,7 +37,20 @@ public class Coin : MonoBehaviour
         }
     }
 
- 
+    void DestroyCoin()
+    {
+        AudioManager.Instance.PLaySound(magicClip);
+        CreateEffect();
+        coinsAmount += addCoins;
+        LevelManager.Instance.RemoveCoinsCount();
+        Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        LevelManager.Instance.AddCoinsCount();
+    }
+
     void Update()
     {
         Rotation();
