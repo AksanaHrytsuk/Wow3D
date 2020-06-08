@@ -9,15 +9,15 @@ public class Coin : MonoBehaviour
     [SerializeField]  float addCoins;
 
     [SerializeField] private GameObject boomEffect;
+    [SerializeField] private AudioClip magicClip;
     
     [SerializeField] private Vector3 rotationAngel;
-
-    private CubeMovement cube;
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Player"))
         {
+            AudioManager.Instance.PLaySound(magicClip);
             createEffect();
             coinsAmount += addCoins;
             Destroy(gameObject);
@@ -34,14 +34,14 @@ public class Coin : MonoBehaviour
         }
     }
 
-    private void Awake()
-    { 
-        cube = FindObjectOfType<CubeMovement>();
-    }
-
-    // Update is called once per frame
+ 
     void Update()
     {
-        transform.Rotate(rotationAngel * Time.deltaTime, Space.World);
+        Rotation();
+    }
+
+    void Rotation()
+    {
+        transform.Rotate(rotationAngel * (Time.deltaTime / 2), Space.World);
     }
 }

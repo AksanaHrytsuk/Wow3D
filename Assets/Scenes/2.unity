@@ -674,6 +674,7 @@ MonoBehaviour:
   coinsAmount: 0
   addCoins: 10
   boomEffect: {fileID: 1750940742320366, guid: ec1383a81f8b26e41bd5795fba065567, type: 3}
+  magiClip: {fileID: 8300000, guid: 881e3f52c86c94f26a60718d35627cd8, type: 3}
   rotationAngel: {x: 0, y: 360, z: 0}
 --- !u!1 &294737323 stripped
 GameObject:
@@ -1285,6 +1286,7 @@ MonoBehaviour:
   coinsAmount: 0
   addCoins: 10
   boomEffect: {fileID: 1750940742320366, guid: ec1383a81f8b26e41bd5795fba065567, type: 3}
+  magiClip: {fileID: 8300000, guid: 881e3f52c86c94f26a60718d35627cd8, type: 3}
   rotationAngel: {x: 0, y: 360, z: 0}
 --- !u!1001 &453289927
 PrefabInstance:
@@ -2601,6 +2603,7 @@ MonoBehaviour:
   coinsAmount: 0
   addCoins: 20
   boomEffect: {fileID: 1750940742320366, guid: ec1383a81f8b26e41bd5795fba065567, type: 3}
+  magiClip: {fileID: 8300000, guid: 881e3f52c86c94f26a60718d35627cd8, type: 3}
   rotationAngel: {x: 0, y: 360, z: 0}
 --- !u!1001 &1179923233
 PrefabInstance:
@@ -3379,7 +3382,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 94d2aaa215aeb0a3a90b719d797e6138, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.08
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3506,7 +3509,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cabfae866cab347928b74b7d0ca6bfa9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.194
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0

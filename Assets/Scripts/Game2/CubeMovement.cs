@@ -30,7 +30,9 @@ public class CubeMovement : MonoBehaviour
     {
         rigidbody.isKinematic = false;
         rigidbody.useGravity = true;
-    }public void
+    }
+    
+    public void
         SwitchOnCubeKinematic()
     {
         rigidbody.isKinematic = true;
