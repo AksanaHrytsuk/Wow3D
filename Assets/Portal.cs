@@ -6,13 +6,14 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
+    [Header("Effects")]
     [SerializeField] private GameObject nextLevelEffect;
 
     private Collider collider;
 
-    public static Portal Instance { get; private set; }
-
     #region Singltone
+
+    public static Portal Instance { get; private set; }
 
     public void Awake()
     {
@@ -25,14 +26,14 @@ public class Portal : MonoBehaviour
             Instance = this;
         }
     }
+
     #endregion
-    // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<Collider>();
         Instance.enabled = false;
         collider.enabled = false;
-        CreateEffect();
+        NextLevelEffect();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -43,19 +44,13 @@ public class Portal : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnEnablePortal()
     {
         collider.enabled = true;
         Portal.Instance.enabled = true;
     }
 
-    public void CreateEffect()
+    public void NextLevelEffect()
     {
         if (nextLevelEffect != null)
         {

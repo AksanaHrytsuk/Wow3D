@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    [Header("Config parametrs")]
     [SerializeField]  float coinsAmount;
     [SerializeField]  float addCoins;
-
+    
+    [Header("Effects")]
     [SerializeField] private GameObject boomEffect;
+    
+    [Header("Sounds")]
     [SerializeField] private AudioClip magicClip;
     
     [SerializeField] private Vector3 rotationAngel;
@@ -17,7 +21,6 @@ public class Coin : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
             DestroyCoin();
             
         //     AudioManager.Instance.PLaySound(magicClip);
