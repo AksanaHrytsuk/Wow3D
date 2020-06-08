@@ -23,11 +23,6 @@ public class Coin : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             DestroyCoin();
-            
-        //     AudioManager.Instance.PLaySound(magicClip);
-        //     CreateEffect();
-        //     coinsAmount += addCoins;
-        //     Destroy(gameObject);
         }
     }
     

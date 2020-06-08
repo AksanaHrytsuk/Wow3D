@@ -10,18 +10,7 @@ public class AudioManager : MonoBehaviour
    [SerializeField] private AudioSource effects;
    
    #region Singleton
-
    public static AudioManager Instance { get; private set; }
-
-   // public static AudioManager Instance
-   // {
-   //    get
-   //    {
-   //       // возврат значения переменной instance
-   //       return instance;
-   //    }
-   // }
-
    public void Awake()
    {
       if (Instance != null)
