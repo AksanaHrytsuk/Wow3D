@@ -11,7 +11,7 @@ public class AudioManager : MonoBehaviour
    
    #region Singleton
 
-   private static AudioManager instance;
+   public static AudioManager instance { get; private set; }
 
    public static AudioManager Instance
    {
@@ -39,5 +39,6 @@ public class AudioManager : MonoBehaviour
    public void PLaySound(AudioClip audio)
    {
       effects.PlayOneShot(audio);
+      DontDestroyOnLoad(gameObject);
    }
 }

@@ -11,7 +11,7 @@ public class CubeMovement : MonoBehaviour
     [SerializeField] private float reloadLevelDelay = 1;
     [SerializeField] private GameObject deathEffect;
 
-    [Header("Sounds")] [SerializeField] private AudioSource deathSound;
+    [Header("Sounds")] [SerializeField] private AudioClip deathSound;
     
     private Rigidbody rigidbody;
     
@@ -28,12 +28,24 @@ public class CubeMovement : MonoBehaviour
 
     public void SwitchOnCubeGravity()
     {
-        Rigidbody rigidbody = GetComponent<Rigidbody>();
         rigidbody.isKinematic = false;
+        rigidbody.useGravity = true;
+    }public void
+        SwitchOnCubeKinematic()
+    {
+        rigidbody.isKinematic = true;
         rigidbody.useGravity = true;
     }
 
     public void Die()
+    {
+        createEffect();
+        AudioManager.Instance.PLaySound(deathSound);
+        Destroy(gameObject);
+        ScenesLoader.Instance.RestartLevel(reloadLevelDelay);
+    }
+
+    public void createEffect()
     {
         if (deathEffect != null)
         {
@@ -41,12 +53,14 @@ public class CubeMovement : MonoBehaviour
             GameObject newObject = Instantiate(original: deathEffect, fxPosition, Quaternion.identity);
             Destroy(newObject, 2f);
         }
-        //AudioManager.Instance.PLaySound(AudioSource deathEffect);
-        Destroy(gameObject);
-        ScenesLoader.Instance.RestartLevel(reloadLevelDelay);
     }
-    
-     void Start()
+
+    private void Awake()
+    { 
+        rigidbody = GetComponent<Rigidbody>();
+    }
+
+    void Start()
     {
         allowInput = true;
     }

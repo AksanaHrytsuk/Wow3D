@@ -31,9 +31,9 @@ public class FallGround : MonoBehaviour
         _sequence = DOTween.Sequence();
         _sequence.AppendCallback(isKinematice)
             .AppendInterval(waitTimeDown)
-            .Append(transform.DOShakePosition(0.1f, 0.1f, 360))
+            .AppendCallback(cube.SwitchOnCubeKinematic)
+            .Append(transform.DOShakePosition(0.5f, 0.1f, 360))
             .Append(transform.DOMoveY(movementDown, 0.5f))
-            //.AppendCallback(SwitchOnGroundGravity)
             .AppendCallback(cube.SwitchOnCubeGravity)
             .AppendInterval(waitTimeDown)
             .Append(transform.DOMoveY(movementUp, 0.5f))
