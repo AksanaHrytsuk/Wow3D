@@ -6,13 +6,12 @@ using DG.Tweening;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private int coins;
-
-    [SerializeField] private  float loadLevelDelay = 1f;
-    
+    [Header("Sounds")]
     [SerializeField]  AudioClip portalMusic;
-   public static LevelManager Instance { get; private set; }
 
     #region Singltone
+
+    public static LevelManager Instance { get; private set; }
 
     public void Awake()
     {

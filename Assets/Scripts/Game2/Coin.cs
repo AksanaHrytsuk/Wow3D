@@ -15,6 +15,7 @@ public class Coin : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioClip magicClip;
     
+    [Header("Rotations and movements")]
     [SerializeField] private Vector3 rotationAngel;
 
     private void OnTriggerEnter(Collider collision)
