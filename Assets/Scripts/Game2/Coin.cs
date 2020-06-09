@@ -56,7 +56,7 @@ public class Coin : MonoBehaviour
 
     void Update()
     {
-        textAmount.text = "Amount: " + coinsAmount;
+        textAmount.text = "Amount: " + addCoins;
 
         Rotation();
     }
