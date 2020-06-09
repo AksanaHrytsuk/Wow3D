@@ -33,7 +33,6 @@ public class Portal : MonoBehaviour
         collider = GetComponent<Collider>();
         Instance.enabled = false;
         collider.enabled = false;
-        NextLevelEffect();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -56,7 +55,6 @@ public class Portal : MonoBehaviour
         {
             Vector3 fxPosition = transform.position;
             GameObject newObject = Instantiate(original: nextLevelEffect, fxPosition, Quaternion.identity);
-            Destroy(newObject, 2f);
         }
     }
 }
