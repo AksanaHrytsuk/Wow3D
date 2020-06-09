@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Coin : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class Coin : MonoBehaviour
     
     [Header("Rotations and movements")]
     [SerializeField] private Vector3 rotationAngel;
+
+
+    [SerializeField] private Text textAmount;
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -52,6 +56,7 @@ public class Coin : MonoBehaviour
 
     void Update()
     {
+        textAmount.text = "Ammount" + coinsAmount;
         Rotation();
     }
 
