@@ -47,7 +47,7 @@ public class Coin : MonoBehaviour
 
     private void Start()
     {
-        LevelManager.Instance.AddCoinsCount();
+        LevelManager.Instance.CoinsAmount();
     }
 
     void Update()

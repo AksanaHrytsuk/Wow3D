@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
 
     #endregion
     // колличество камней на сцене на старте игры
-    public void AddCoinsCount()
+    public void CoinsAmount()
     {
         coins++;
     }
@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour
         coins--;
         if (coins == 0)
         {
+            Debug.Log("here");
             CreatePortal();
         }
     }
