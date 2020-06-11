@@ -4,7 +4,7 @@ using DG.Tweening;
 
 public class Barrier : MonoBehaviour
 {
-    [Header("Config parametrs")]
+    [Header("Config parameters")]
     [SerializeField] float movementUp;
     [SerializeField] float movementDown;
     [SerializeField] private float moveTime;
@@ -50,7 +50,6 @@ public class Barrier : MonoBehaviour
     public void MoveDown()
     {
         movementSequence = DOTween.Sequence();
-        
         movementSequence.AppendInterval(waitTimeDown);
         movementSequence.Append(transform.DOShakePosition(duration, strength, vibrato, randomness));
         movementSequence.AppendInterval(waitTimeUp);
