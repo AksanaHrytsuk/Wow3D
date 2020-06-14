@@ -1,17 +1,24 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PullPlatformButton : MonoBehaviour
+public class PullPlatformButton : Button
 {
+    [Header("Components")]
     public Platform _platform;
 
-    public void OnTriggerEnter(Collider other)
+    public override void ActionOne()
     {
-        if (other.CompareTag("Player"))
+        _platform.Move();
+    }
+    #region LogError
+
+    void Start()
+    {
+        // вывод сообщения, если ссылка не задана
+        if (_platform == null)
         {
-            _platform.Move();
+            Debug.LogError("Block is not set");
         }
     }
+
+    #endregion
 }

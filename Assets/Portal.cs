@@ -11,28 +11,13 @@ public class Portal : MonoBehaviour
 
     private Collider collider;
 
-    #region Singltone
 
-    public static Portal Instance { get; private set; }
-
-    public void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-
-    #endregion
     void Start()
     {
         collider = GetComponent<Collider>();
-        Instance.enabled = false;
+        enabled = false;
         collider.enabled = false;
+      
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -46,7 +31,7 @@ public class Portal : MonoBehaviour
     public void OnEnablePortal()
     {
         collider.enabled = true;
-        Portal.Instance.enabled = true;
+        enabled = true;
     }
 
     public void NextLevelEffect()

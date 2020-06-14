@@ -6,14 +6,17 @@ using DG.Tweening;
 
 public class Platform : MonoBehaviour
 {
-    public bool forward;
+    [Header("Positions")]
+    [SerializeField] bool forward;
 
-    public bool back;
+    [SerializeField] bool back;
 
-    public bool left;
+    [SerializeField] bool left;
 
-    public bool right;
-    public int units;
+    [SerializeField] bool right;
+    
+    [Header("Distance")]
+    [SerializeField] int units;
 
     private float _targetRight;
     private float _targetLeft;
@@ -27,7 +30,6 @@ public class Platform : MonoBehaviour
         _targetLeft = transform.position.x - units;
         _targetForward = transform.position.z + units;
         _targetBack = transform.position.z - units;
-
     }
 
     public void Move()
@@ -53,34 +55,4 @@ public class Platform : MonoBehaviour
             transform.DOMoveX (_targetRight, 1, false);
         }
     }
-
-
-    // void ChangePosition(PlatformStates newPlatformPosition) 
-    // {
-    //     movemenPlatform = newPlatformPosition;
-    //     
-    //     switch (movemenPlatform) 
-    //     {
-    //         case PlatformStates.Forward:
-    //            // _aiDestinationSetter.followPlayer = true;
-    //           
-    //             break;
-    //         case PlatformStates.Back:
-    //            // _aiDestinationSetter.followPlayer = false;
-    //            
-    //             break;
-    //         case PlatformStates.Left:
-    //         {
-    //         }
-    //             break;
-    //         case PlatformStates.Right:
-    //             
-    //             break;
-    //     } 
-    // }
-
-    // void MoveTo(Vector3 newPosition)
-    // {
-    //     transform.DOMove(newPosition, 1).SetEase(Ease.InBounce);
-    // }
 }

@@ -1,13 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("Amount")]
     [SerializeField] private int coins;
+    
     [Header("Sounds")]
     [SerializeField]  AudioClip portalMusic;
+
+    private Portal portal;
 
     #region Singltone
 
@@ -26,6 +31,7 @@ public class LevelManager : MonoBehaviour
     }
 
     #endregion
+
     // колличество камней на сцене на старте игры
     public void CoinsAmount()
     {
@@ -43,12 +49,17 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        portal = FindObjectOfType<Portal>();
+    }
+
     void CreatePortal()
     {
         Sequence sequence = DOTween.Sequence();
         sequence.AppendInterval(1);
         sequence.AppendCallback(() => AudioManager.Instance.PLaySound(portalMusic));
-        sequence.AppendCallback(Portal.Instance.NextLevelEffect);
-        sequence.AppendCallback(Portal.Instance.OnEnablePortal);
+        sequence.AppendCallback(portal.NextLevelEffect);
+        sequence.AppendCallback(portal.OnEnablePortal);
     }
 }

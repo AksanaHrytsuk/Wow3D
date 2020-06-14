@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using DG.Tweening;
 
 public class Button : MonoBehaviour
@@ -9,29 +10,9 @@ public class Button : MonoBehaviour
   [SerializeField] private float moveTime; // время, за которое кнопка вверх поднимается
   [SerializeField] private float delay; // задержка, перед поднятием кнопки
 
-  [SerializeField] Barrier _barrier;
-  
   private bool buttonPressed;
 
-  private void Start()
-  {
-    // вывод сообщения, если ссылка не задана
-    if (_barrier == null)
-    {
-      Debug.LogError("Block is not set");
-    }
-  }
 
-  void PressButton()
-  {
-    buttonPressed = true;
-  }
-
-  void UnpressButtom()
-  {
-    buttonPressed = false;
-  }
- 
   public void OnTriggerEnter(Collider other)
   {
     // если gameObject c тегом Player сталкивается с button и кнопка нажата, то 
@@ -40,19 +21,39 @@ public class Button : MonoBehaviour
     {
       PressButton();
       MoveDownButton();
-      _barrier.MoveUp();
+      ActionOne();
     }
   }
 
-  public void OnTriggerExit(Collider other)
+  public  void OnTriggerExit(Collider other)
   {
     // если gameObject c тегом Player сталкивается с button и кнопка не нажата, то 
     // вызов методов 
     if (other.CompareTag("Player") && buttonPressed)
     {
       WaitMoveUpButton();
-      _barrier.MoveDown();
+      ActionTwo();
     }
+  }
+
+  public virtual void ActionOne()
+  {
+    
+  }
+
+  public virtual void ActionTwo()
+  {
+    
+  }
+
+  void PressButton()
+  {
+    buttonPressed = true;
+  }
+
+  void UnpressButton()
+  {
+    buttonPressed = false;
   }
 
   void MoveDownButton()
@@ -62,6 +63,6 @@ public class Button : MonoBehaviour
 
   void WaitMoveUpButton()
   {
-    transform.DOMoveY(movementUp , moveTime).SetDelay(delay).SetEase(Ease.InCubic).OnComplete(UnpressButtom);
+    transform.DOMoveY(movementUp , moveTime).SetDelay(delay).SetEase(Ease.InCubic).OnComplete(UnpressButton);
   }
 }
