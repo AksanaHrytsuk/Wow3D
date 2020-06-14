@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
     
     public  void MusicVolumeChanged()
     {
-        // xxDebug.Log("Music" + musicSlider.value);
+        // Debug.Log("Music" + musicSlider.value);
         AudioManager.Instance.SetMusicVolume(musicSlider.value / musicSlider.maxValue);
     }
 }

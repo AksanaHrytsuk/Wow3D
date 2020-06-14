@@ -38,7 +38,6 @@ public class Spikes : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-      
             CubeMovement cube = other.GetComponent<CubeMovement>();
             cube.Die();
     }
