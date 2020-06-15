@@ -18,7 +18,7 @@ public class ScenesLoader : MonoBehaviour
 
     public void Awake()
     {
-        if (Instance != null)
+        if (instance != null)
         {
             Destroy(gameObject);
         }

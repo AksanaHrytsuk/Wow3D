@@ -22,29 +22,39 @@ public class AudioManager : MonoBehaviour
       {
          Instance = this;
          DontDestroyOnLoad(gameObject);
-         music.volume = PlayerPrefs.GetFloat(PREFS_MUSIC_VOLUME, 0.3f);
+         // music.volume = PlayerPrefs.GetFloat(PREFS_MUSIC_VOLUME, 0.3f);
+         // effects.volume = PlayerPrefs.GetFloat(PREFS_EFFECT_VOLUME, 0.5f);
       }
    }
    #endregion
 
    public void PLaySound(AudioClip audio)
    {
-      effects.PlayOneShot(audio);
       DontDestroyOnLoad(gameObject);
+      effects.PlayOneShot(audio);
    }
-
+   
+   // задать значение 
    public void SetMusicVolume(float volume)
    {
+      // переданная громкость в функцию устанавливается в music
       music.volume = volume;
       PlayerPrefs.SetFloat("PREFS_MUSIC_VOLUME", volume); //
    }
+   
+   // получить значение
+   public float GetMusicVolume()
+   {
+      return music.volume;
+   }
+
    public void SetEffectVolume(float volume)
    {
       effects.volume = volume;
       PlayerPrefs.SetFloat("PREFS_EFFECT_VOLUME", volume); //
    }
 
-   public float GetMusicVolume()
+   public float GetEffectVolume()
    {
       return effects.volume;
    }
