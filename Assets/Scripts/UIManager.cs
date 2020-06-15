@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private float fadeDuration;
     [SerializeField] private CanvasGroup popUp;
     [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider effectSlider;
 
     private void Start()
     {
@@ -40,5 +41,9 @@ public class UIManager : MonoBehaviour
     {
         // Debug.Log("Music" + musicSlider.value);
         AudioManager.Instance.SetMusicVolume(musicSlider.value / musicSlider.maxValue);
+    }
+    public  void EffectVolumeChanged()
+    {
+        AudioManager.Instance.SetEffectVolume(musicSlider.value / musicSlider.maxValue);
     }
 }

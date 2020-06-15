@@ -7,7 +7,8 @@ public class AudioManager : MonoBehaviour
 {
    [SerializeField] private AudioSource music;
    [SerializeField] private AudioSource effects;
-   private const string PREFS_MUSIC_VOLUME= "MusicVolume";
+   private const string PREFS_MUSIC_VOLUME = "MusicVolume";
+   private const string PREFS_EFFECT_VOLUME = "EffectVolume";
    
    #region Singleton
    public static AudioManager Instance { get; private set; }
@@ -37,9 +38,14 @@ public class AudioManager : MonoBehaviour
       music.volume = volume;
       PlayerPrefs.SetFloat("PREFS_MUSIC_VOLUME", volume); //
    }
+   public void SetEffectVolume(float volume)
+   {
+      effects.volume = volume;
+      PlayerPrefs.SetFloat("PREFS_EFFECT_VOLUME", volume); //
+   }
 
    public float GetMusicVolume()
    {
-      return music.volume;
+      return effects.volume;
    }
 }
