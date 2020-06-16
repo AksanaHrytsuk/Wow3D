@@ -15,6 +15,7 @@ public class PortalBetweenPoints : MonoBehaviour
         {
             _sequence = DOTween.Sequence();
             _sequence.AppendCallback(NextPointEffect);
+            _sequence.AppendInterval(0.5f);
             _sequence.AppendCallback(() => Teleport(collision));
         }
     }
@@ -30,7 +31,7 @@ public class PortalBetweenPoints : MonoBehaviour
         {
             Vector3 fxPosition = transform.position;
             GameObject newObject = Instantiate(original: nextLevelEffect, fxPosition, Quaternion.identity);
-            Destroy(gameObject, 2f);
+            Destroy(newObject, 2f);
         }
     }
 }
