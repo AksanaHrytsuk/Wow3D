@@ -18,7 +18,12 @@ public class PortalBetweenPoints : MonoBehaviour
             _sequence.AppendCallback(() => Teleport(collision));
         }
     }
-    
+
+    void Teleport(Collider collision)
+    {
+        collision.transform.position = destinationPoint.position;
+    }
+
     private void NextPointEffect()
     {
         if (nextLevelEffect != null)
@@ -27,11 +32,5 @@ public class PortalBetweenPoints : MonoBehaviour
             GameObject newObject = Instantiate(original: nextLevelEffect, fxPosition, Quaternion.identity);
             Destroy(gameObject, 2f);
         }
-    }
-
-    void Teleport(Collider collision)
-    {
-        collision.transform.position = destinationPoint.position;
-
     }
 }
