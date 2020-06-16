@@ -4,8 +4,6 @@ using UnityEngine.UI;
 public class Coin : MonoBehaviour
 {
     [Header("Config parameters")]
-    [SerializeField]  float coinsAmount;
-    [SerializeField]  float addCoins;
     
     [Header("Effects")]
     [SerializeField] private GameObject boomEffect;
@@ -21,6 +19,7 @@ public class Coin : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             DestroyCoin();
+            LevelManager.Instance.UpdateCoinsText();
         }
     }
     
@@ -38,7 +37,7 @@ public class Coin : MonoBehaviour
     {
         AudioManager.Instance.PLaySound(magicClip);
         CreateEffect();
-        coinsAmount += addCoins;
+        LevelManager.Instance.AllCoins++;
         LevelManager.Instance.RemoveCoinsCount();
         Destroy(gameObject);
     }

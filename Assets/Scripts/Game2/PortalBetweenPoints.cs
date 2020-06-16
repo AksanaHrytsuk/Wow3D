@@ -1,0 +1,37 @@
+﻿using System;
+using UnityEngine;
+using DG.Tweening;
+
+public class PortalBetweenPoints : MonoBehaviour
+{
+    [Header("Effects")] [SerializeField] private GameObject nextLevelEffect;
+
+    public Transform destinationPoint;
+    private Sequence _sequence;
+
+    public void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            _sequence = DOTween.Sequence();
+            _sequence.AppendCallback(NextPointEffect);
+            _sequence.AppendCallback(() => Teleport(collision));
+        }
+    }
+    
+    private void NextPointEffect()
+    {
+        if (nextLevelEffect != null)
+        {
+            Vector3 fxPosition = transform.position;
+            GameObject newObject = Instantiate(original: nextLevelEffect, fxPosition, Quaternion.identity);
+            Destroy(gameObject, 2f);
+        }
+    }
+
+    void Teleport(Collider collision)
+    {
+        collision.transform.position = destinationPoint.position;
+
+    }
+}

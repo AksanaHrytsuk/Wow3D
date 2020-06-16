@@ -11,12 +11,12 @@ public class BarrierPendulum : MonoBehaviour
     [Header("Movement parameters")]
     [SerializeField] private AnimationCurve movementEase1;
     [SerializeField] private AnimationCurve movementEase2;
-    
+
     private CubeMovement _cube;
     private Sequence _sequence;
-    Vector3 _moveLeft = new Vector3(0, 0, 120);
-    Vector3 _moveRight = new Vector3(0, 0, -120);
-    Vector3 _moveCenter = new Vector3(0, 0, 0);
+    [SerializeField]Vector3 moveToOnePoint = new Vector3(0, 0, 120);
+    [SerializeField]Vector3 moveToAnotherPoint = new Vector3(0, 0, -120);
+    [SerializeField]Vector3 moveCenter = new Vector3(0, 0, 0);
     
 
 
@@ -25,12 +25,12 @@ public class BarrierPendulum : MonoBehaviour
         _cube = FindObjectOfType<CubeMovement>();
         
         _sequence = DOTween.Sequence();
-        _sequence.Append(transform.DORotate(_moveRight, moveTime).SetEase(movementEase1));
+        _sequence.Append(transform.DORotate(moveToOnePoint, moveTime).SetEase(movementEase1));
         _sequence.AppendInterval(waitTimeUp);
-        _sequence.Append(transform.DORotate(_moveCenter, moveTime).SetEase(movementEase2));
-        _sequence.Append(transform.DORotate(_moveLeft, moveTime).SetEase(movementEase1));
+        _sequence.Append(transform.DORotate(moveCenter, moveTime).SetEase(movementEase2));
+        _sequence.Append(transform.DORotate(moveToAnotherPoint, moveTime).SetEase(movementEase1));
         _sequence.AppendInterval(waitTimeUp);
-        _sequence.Append(transform.DORotate(_moveCenter, moveTime).SetEase(movementEase2));
+        _sequence.Append(transform.DORotate(moveCenter, moveTime).SetEase(movementEase2));
         _sequence.SetLoops(-1, LoopType.Restart);
     }
 
