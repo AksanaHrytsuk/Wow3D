@@ -51,7 +51,7 @@ public class Button : MonoBehaviour
     buttonPressed = true;
   }
 
-  void UnpressButton()
+  void UnpressedButton()
   {
     buttonPressed = false;
   }
@@ -63,6 +63,6 @@ public class Button : MonoBehaviour
 
   void WaitMoveUpButton()
   {
-    transform.DOMoveY(movementUp , moveTime).SetDelay(delay).SetEase(Ease.InCubic).OnComplete(UnpressButton);
+    transform.DOMoveY(movementUp , moveTime).SetDelay(delay).SetEase(Ease.InCubic).OnComplete(UnpressedButton);
   }
 }

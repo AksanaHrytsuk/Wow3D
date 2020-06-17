@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Lean.Pool;
 using UnityEngine.UI;
 
 public class Coin : MonoBehaviour
@@ -28,8 +29,8 @@ public class Coin : MonoBehaviour
         if (boomEffect != null)
         {
             Vector3 fxPosition = transform.position;
-            GameObject newObject = Instantiate(original: boomEffect, fxPosition, Quaternion.identity);
-            Destroy(newObject, 2f);
+            GameObject newObject = LeanPool.Spawn(boomEffect, fxPosition, Quaternion.identity);
+            LeanPool.Despawn(newObject, 2f);
         }
     }
 

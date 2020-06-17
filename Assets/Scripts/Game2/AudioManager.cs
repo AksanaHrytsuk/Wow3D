@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
 {
    [SerializeField] private AudioSource [] music;
    [SerializeField] private AudioSource effects;
-   private const string PREFS_MxUSIC_VOLUME = "MusicVolume";
+   private const string PREFS_MUSIC_VOLUME = "MusicVolume";
    private const string PREFS_EFFECT_VOLUME = "EffectVolume";
    private int musicIndex;
    private int musicCount;

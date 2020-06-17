@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Lean.Pool;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -39,7 +40,7 @@ public class Portal : MonoBehaviour
         if (nextLevelEffect != null)
         {
             Vector3 fxPosition = transform.position;
-            GameObject newObject = Instantiate(original: nextLevelEffect, fxPosition, Quaternion.identity);
+            GameObject newObject = LeanPool.Spawn(nextLevelEffect, fxPosition, Quaternion.identity);
         }
     }
 }

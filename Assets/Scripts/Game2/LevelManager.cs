@@ -10,10 +10,11 @@ public class LevelManager : MonoBehaviour
 
     [Header("Sounds")]
     [SerializeField]  AudioClip portalMusic;
-
+    
+    [Header("UI Elements")]
     [SerializeField] private Text coinText;
 
-    private Portal portal;
+    private Portal _portal;
 
     protected internal int AllCoins { get; set; } = 0;
 
@@ -47,14 +48,13 @@ public class LevelManager : MonoBehaviour
         coins--;
         if (coins == 0)
         {
-            Debug.Log("here");
             CreatePortal();
         }
     }
 
     private void Start()
     {
-        portal = FindObjectOfType<Portal>();
+        _portal = FindObjectOfType<Portal>();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -63,8 +63,8 @@ public class LevelManager : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         sequence.AppendInterval(1);
         sequence.AppendCallback(() => AudioManager.Instance.PLaySound(portalMusic));
-        sequence.AppendCallback(portal.NextLevelEffect);
-        sequence.AppendCallback(portal.OnEnablePortal);
+        sequence.AppendCallback(_portal.NextLevelEffect);
+        sequence.AppendCallback(_portal.OnEnablePortal);
     }
 
     public void UpdateCoinsText()

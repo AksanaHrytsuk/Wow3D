@@ -51,7 +51,6 @@ public class Platform : MonoBehaviour
 
         if (right)
         {
-            // Vector3 target = new Vector3(transform.position.x + 0.8f , transform.position.y, transform.forward.z);
             transform.DOMoveX (_targetRight, 1, false);
         }
     }

@@ -7,6 +7,7 @@ using UnityEngine;
 using DG.Tweening;
 public class FallGround : MonoBehaviour
 {
+    [Header("Config parameters")]
     [SerializeField] private float waitTimeDown ;
     [SerializeField] float movementDown; 
     [SerializeField] float movementUp; 
@@ -29,7 +30,7 @@ public class FallGround : MonoBehaviour
     private void MoveDownGround()
     {
         _sequence = DOTween.Sequence();
-        _sequence.AppendCallback(isKinematice)
+        _sequence.AppendCallback(IsKinematic)
             .AppendInterval(waitTimeDown)
             .AppendCallback(cube.SwitchOnCubeKinematic)
             .Append(transform.DOShakePosition(0.5f, 0.1f, 360))
@@ -46,14 +47,9 @@ public class FallGround : MonoBehaviour
         cube = FindObjectOfType<CubeMovement>();
     }
 
-    private void isKinematice()
+    private void IsKinematic()
     {
             _rigidbody.isKinematic = true;
             _rigidbody.detectCollisions = true;
     }
-
-    // private void SwitchOnGroundGravity()
-    // {
-    //     _rigidbody.useGravity = true;
-    // }
 }

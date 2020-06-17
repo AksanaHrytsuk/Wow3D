@@ -1,10 +1,11 @@
 ﻿using System;
 using UnityEngine;
 using DG.Tweening;
+using Lean.Pool;
 
 public class CubeMovement : MonoBehaviour
 {
-    [Header("Config parametrs")]
+    [Header("Config parameters")]
     [SerializeField] float moveTime;
     [SerializeField] float jumpPower;
     [SerializeField] private float reloadLevelDelay = 1;
@@ -34,8 +35,7 @@ public class CubeMovement : MonoBehaviour
         rigidbody.useGravity = true;
     }
     
-    public void
-        SwitchOnCubeKinematic()
+    public void SwitchOnCubeKinematic()
     {
         rigidbody.isKinematic = true;
         rigidbody.useGravity = true;
@@ -54,8 +54,8 @@ public class CubeMovement : MonoBehaviour
         if (deathEffect != null)
         {
             Vector3 fxPosition = transform.position;
-            GameObject newObject = Instantiate(original: deathEffect, fxPosition, Quaternion.identity);
-            Destroy(newObject, 2f);
+            GameObject newObject = LeanPool.Spawn( deathEffect, fxPosition, Quaternion.identity);
+            LeanPool.Despawn(newObject, 2f);
         }
     }
 

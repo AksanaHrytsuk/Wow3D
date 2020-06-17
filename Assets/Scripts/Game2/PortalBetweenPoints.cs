@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using DG.Tweening;
+using Lean.Pool;
 
 public class PortalBetweenPoints : MonoBehaviour
 {
@@ -30,8 +31,8 @@ public class PortalBetweenPoints : MonoBehaviour
         if (nextLevelEffect != null)
         {
             Vector3 fxPosition = transform.position;
-            GameObject newObject = Instantiate(original: nextLevelEffect, fxPosition, Quaternion.identity);
-            Destroy(newObject, 2f);
+            GameObject newObject = LeanPool.Spawn(nextLevelEffect, fxPosition, Quaternion.identity);
+            LeanPool.Despawn(newObject, 2f);
         }
     }
 }
