@@ -2122,7 +2122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTimeDown: 1
   movementDown: -10
-  movementUp: 0
+  movementUp: -0.06
   fallGround: 1
 --- !u!4 &295266849 stripped
 Transform:
@@ -8031,7 +8031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTimeDown: 1
   movementDown: -10
-  movementUp: 0
+  movementUp: -0.06
   fallGround: 1
 --- !u!54 &1417651589
 Rigidbody:
@@ -8591,7 +8591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTimeDown: 1
   movementDown: -10
-  movementUp: 0
+  movementUp: -0.06
   fallGround: 1
 --- !u!54 &1506623681
 Rigidbody:
@@ -9154,9 +9154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e22e653c6c8211819c5766ad7450ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimeDown: 1
+  waitTimeDown: 0.5
   movementDown: -10
-  movementUp: 0
+  movementUp: -0.06
   fallGround: 1
 --- !u!54 &1647531275
 Rigidbody:
