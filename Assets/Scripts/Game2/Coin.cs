@@ -30,7 +30,7 @@ public class Coin : MonoBehaviour
         {
             Vector3 fxPosition = transform.position;
             GameObject newObject = LeanPool.Spawn(boomEffect, fxPosition, Quaternion.identity);
-            LeanPool.Despawn(newObject, 2f);
+            //LeanPool.Despawn(newObject, 2f);
         }
     }
 

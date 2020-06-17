@@ -32,7 +32,7 @@ public class PortalBetweenPoints : MonoBehaviour
         {
             Vector3 fxPosition = transform.position;
             GameObject newObject = LeanPool.Spawn(nextLevelEffect, fxPosition, Quaternion.identity);
-            LeanPool.Despawn(newObject, 2f);
+            //LeanPool.Despawn(newObject, 2f);
         }
     }
 }
