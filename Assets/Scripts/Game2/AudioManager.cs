@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
+
+
 [DisallowMultipleComponent]
 public class AudioManager : MonoBehaviour
 
 {
-   [SerializeField] private AudioSource [] music;
+   [Header("Sounds")] [SerializeField] private AudioClip[] musicPlayList;
+   [SerializeField] private AudioSource  music;
    [SerializeField] private AudioSource effects;
+   [SerializeField] private bool rundomMusic;
    private const string PREFS_MUSIC_VOLUME = "MusicVolume";
    private const string PREFS_EFFECT_VOLUME = "EffectVolume";
    private int musicIndex;
@@ -42,16 +44,31 @@ public class AudioManager : MonoBehaviour
       DontDestroyOnLoad(gameObject);
       // проверка, что песня играет
       // если не играет, то включаем следующую по индексу
-      if (!music[musicIndex].isPlaying)
+      if (!music.isPlaying)
       {
          ChangeMusicIndex(); // поменять индекс
-         music[musicIndex].Play(); //воспроизвести 
+         music.clip = musicPlayList[musicIndex];
+         music.Play(); //воспроизвести 
       }
    }
    
+  
+   private void ChangeMusicIndex()
+   {
+      if (rundomMusic)
+      {
+         Shuffle();
+      }
+      else
+      {
+         Consistently();
+      }
+   }
+   
+   // воспроизведение музыки по кругу
    // Если песня последняя в списке, то след запускается под индексом 0, если не последняя песня в массиве
    // то увеличить индекс
-   private void ChangeMusicIndex()
+   void Consistently()
    {
       if (musicIndex == musicCount)
       {
@@ -62,26 +79,33 @@ public class AudioManager : MonoBehaviour
          musicIndex++;
       }
    }
+   
+   // перемешать индексы в массиве 
+   void Shuffle()
+   {
+      musicIndex = Random.Range(0, musicCount + 1);
+   }
    // задать значение 
    public void SetMusicVolume(float volume)
    {
       // переданная громкость в функцию устанавливается в music
-      music[musicIndex].volume = volume;
+      music.volume = volume;
       PlayerPrefs.SetFloat("PREFS_MUSIC_VOLUME", volume); //
    }
    
    // получить значение
    public float GetMusicVolume()
    {
-      return music[musicIndex].volume;
+      return music.volume;
    }
 
    public void SetEffectVolume(float volume)
    {
       effects.volume = volume;
-      PlayerPrefs.SetFloat("PREFS_EFFECT_VOLUME", volume); //
+      PlayerPrefs.SetFloat("PREFS_EFFECT_VOLUME", volume); //сохраняет громкость в реестре
    }
-
+   
+   // возвращает громкость эффектов
    public float GetEffectVolume()
    {
       return effects.volume;
@@ -90,8 +114,10 @@ public class AudioManager : MonoBehaviour
    // песня с индексом 0 запускается при старте
    private void Start()
    {
-      musicCount = music.Length-1;
-      music[musicIndex].Play();
+      // колличество песен на старте игры (длина массива)
+      musicCount = musicPlayList.Length-1;
+      // воспроизвести музыку
+      music.Play();
    }
 
    private void Update()

@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using Lean.Pool;
-using UnityEngine.UI;
 
 public class Coin : MonoBehaviour
 {
-    [Header("Config parameters")]
     
     [Header("Effects")]
     [SerializeField] private GameObject boomEffect;

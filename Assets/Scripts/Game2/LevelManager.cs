@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         _portal = FindObjectOfType<Portal>();
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
     }
 
     void CreatePortal()

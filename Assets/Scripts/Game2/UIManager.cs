@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
     
     public  void MusicVolumeChanged()
     {
-        // Debug.Log("Music" + musicSlider.value);
+        // Делим на maxValue для того, чтобы совпадало значение в слайдере от 0 до 10, а в AudioSours от 0,1 до 1
         AudioManager.Instance.SetMusicVolume(musicSlider.value / musicSlider.maxValue);
     }
     public  void EffectVolumeChanged()
